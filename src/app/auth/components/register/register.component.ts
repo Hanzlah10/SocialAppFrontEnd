@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/authService.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,21 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 })
 export class RegisterComponent {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authser: AuthService) { }
+
+  form = this.fb.nonNullable.group({
+    username: ['', Validators.required],
+    email: ['', Validators.required],
+    password: ['', Validators.required]
+  })
+
+  onSubmit() {
+
+    const data = this.form.value
+    this.authser.register(data).subscribe(value => console.log(value))
+    console.log(this.form.value)
+  }
+
 
 
 }
