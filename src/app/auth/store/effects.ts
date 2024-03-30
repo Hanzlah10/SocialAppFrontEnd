@@ -29,3 +29,18 @@ export const registerEffects = createEffect(
     }, { functional: true }
 
 );
+
+
+
+
+// export const loginEffects = createEffect(
+//     (
+//         actions$ = inject(Actions),
+//         authService = inject(AuthService)
+//     ) =>{
+//         return actions$.pipe(
+//             ofType(authActions.login),
+//             switchMap(authService.register({r}))
+//         )
+//     }
+// )

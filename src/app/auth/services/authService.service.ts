@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { map } from 'rxjs';
-import { AuthResponseInterface } from '../types/AuthResponse.interface';
+import { AuthLoginResponseInterface, AuthRegisterResponseInterface, } from '../types/AuthResponse.interface';
+import { LoginRequestInterface } from '../types/LoginRequest.interface';
+import { RegisterRequestInterface } from '../types/RegisterRequest.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +14,16 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
 
-  register(data: any) {
+  register(data: RegisterRequestInterface) {
     let url = environment.apiUrl + '/register'
-    console.log(url);
-
-    console.log("User registered")
     return this.http
-      .post<AuthResponseInterface>(url, data).pipe(map((response) => response.data))
+      .post<AuthRegisterResponseInterface>(url, data).pipe(map((response) => response.data))
   }
+
+  login(data: LoginRequestInterface) {
+    let url = environment.apiUrl + '/login'
+    return this.http
+      .post<AuthLoginResponseInterface>(url, data).pipe(map((response) => response.data))
+  }
+
 }
