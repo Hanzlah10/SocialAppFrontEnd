@@ -18,6 +18,8 @@ export const registerEffects = createEffect(
             switchMap(({ request }) => {
                 return authService.register(request).pipe(
                     map((currentUser: currentUserInterface) => {
+                        console.log(currentUser.token + " from effects")
+                        console.log(currentUser.username + " from effects")
                         return authActions.registerSuccess({ currentUser });
                     }),
                     catchError((errorResponse: HttpErrorResponse) => {
@@ -40,9 +42,10 @@ export const loginEffects = createEffect(
             ofType(authActions.login),
             switchMap(({ request }) => {
                 return authService.login(request).pipe(
-                    map((loggedinUser: AuthLoginResponseInterface) => {
-                        console.log(loggedinUser.data.email + " from effects")
-                        return authActions.loginSuccess({ loggedinUser });
+                    map((currentUser: currentUserInterface) => {
+                        console.log(currentUser.token + " from effects")
+                        console.log(currentUser.username + " from effects")
+                        return authActions.loginSuccess({ currentUser });
                     }),
                     catchError((errorResponse: HttpErrorResponse) => {
                         return of(

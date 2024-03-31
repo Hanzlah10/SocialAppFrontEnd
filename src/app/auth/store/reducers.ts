@@ -28,7 +28,7 @@ const authFeature = createFeature({
         })),
         on(authActions.loginSuccess, (state, actions) => ({
             ...state,
-            // currentUser: actions.loggedinUser
+            currentUser: actions.currentUser
         })),
         on(authActions.loginFailure, (state, actions) => ({
             ...state,

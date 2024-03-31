@@ -24,8 +24,8 @@ export class AuthService {
   login(data: LoginRequestInterface) {
     let url = environment.apiUrl + '/login'
     return this.http
-      .post<AuthLoginResponseInterface>(url, data)
-    // .pipe(map((response) => response.data))
+      .post<AuthRegisterResponseInterface>(url, data)
+      .pipe(map((response) => response.data))
   }
 
 }
