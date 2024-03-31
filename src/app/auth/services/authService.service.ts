@@ -17,13 +17,15 @@ export class AuthService {
   register(data: RegisterRequestInterface) {
     let url = environment.apiUrl + '/register'
     return this.http
-      .post<AuthRegisterResponseInterface>(url, data).pipe(map((response) => response.data))
+      .post<AuthRegisterResponseInterface>(url, data)
+      .pipe(map((response) => response.data))
   }
 
   login(data: LoginRequestInterface) {
     let url = environment.apiUrl + '/login'
     return this.http
-      .post<AuthLoginResponseInterface>(url, data).pipe(map((response) => response.data))
+      .post<AuthLoginResponseInterface>(url, data)
+    // .pipe(map((response) => response.data))
   }
 
 }

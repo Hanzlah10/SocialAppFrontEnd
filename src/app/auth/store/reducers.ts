@@ -21,6 +21,17 @@ const authFeature = createFeature({
         })),
         on(authActions.registerFailure, (state, actions) => ({
             ...state,
+            // errors: actions.
+        })),
+        on(authActions.login, (state) => ({
+            ...state
+        })),
+        on(authActions.loginSuccess, (state, actions) => ({
+            ...state,
+            // currentUser: actions.loggedinUser
+        })),
+        on(authActions.loginFailure, (state, actions) => ({
+            ...state,
             // errors: actions.type.
         })),
     )

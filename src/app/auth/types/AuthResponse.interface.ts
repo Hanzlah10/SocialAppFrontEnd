@@ -9,6 +9,10 @@ export interface AuthRegisterResponseInterface {
 export interface AuthLoginResponseInterface {
     statusCode: number,
     message: string,
-    data: object,
+    data: {
+        token: object,
+        email: string,
+        username: string
+    },
     error: []
 }

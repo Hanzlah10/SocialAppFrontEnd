@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { LoginRequestInterface } from '../../types/LoginRequest.interface';
+import { authActions } from '../../store/actions';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,8 @@ export class LoginComponent {
       email: this.form.value.email,
       password: this.form.value.password,
     }
+
+    this.store.dispatch(authActions.login({ request: data }))
 
 
 

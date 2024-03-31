@@ -5,6 +5,8 @@ import { authActions } from "./actions";
 import { catchError, map, of, switchMap } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 import { currentUserInterface } from "../../shared/types/CurrentUser.interface";
+import { RegisterRequestInterface } from "../types/RegisterRequest.interface";
+import { AuthLoginResponseInterface } from "../types/AuthResponse.interface";
 
 export const registerEffects = createEffect(
     (
@@ -29,6 +31,30 @@ export const registerEffects = createEffect(
     }, { functional: true }
 
 );
+export const loginEffects = createEffect(
+    (
+        actions$ = inject(Actions),
+        authService = inject(AuthService)
+    ) => {
+        return actions$.pipe(
+            ofType(authActions.login),
+            switchMap(({ request }) => {
+                return authService.login(request).pipe(
+                    map((loggedinUser: AuthLoginResponseInterface) => {
+                        console.log(loggedinUser.data.email + " from effects")
+                        return authActions.loginSuccess({ loggedinUser });
+                    }),
+                    catchError((errorResponse: HttpErrorResponse) => {
+                        return of(
+                            authActions.registerFailure()
+                        );
+                    })
+                );
+            })
+        );
+    }, { functional: true }
+
+);
 
 
 
@@ -37,10 +63,17 @@ export const registerEffects = createEffect(
 //     (
 //         actions$ = inject(Actions),
 //         authService = inject(AuthService)
-//     ) =>{
+//     ) => {
 //         return actions$.pipe(
 //             ofType(authActions.login),
-//             switchMap(authService.register({r}))
+//             switchMap(({ request }) => {
+//                 return authService.login(request).pipe(
+//                     map((loggedinUser: currentUserInterface) => {
+//                         return authActions.loginSuccess({ currentUser: loggedinUser })
+//                     }),
+//                 )
+//             })
 //         )
 //     }
 // )
+
