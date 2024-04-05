@@ -7,7 +7,7 @@ export class PersistenceService {
     set(key: string, data: unknown): void {
         try {
             localStorage.setItem(key, JSON.stringify(data));
-            console.log(JSON.stringify(data) + "Set successfull")
+            // console.log(JSON.stringify(data) + "Set successfull")
         } catch (e) {
             console.log('Error Local Storage ', e);
         }

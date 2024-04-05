@@ -31,8 +31,8 @@ export const registerEffects = createEffect(
             })
         );
     }, { functional: true }
-
 );
+
 export const loginEffects = createEffect(
     (
         actions$ = inject(Actions),
@@ -61,7 +61,7 @@ export const loginEffects = createEffect(
 
 );
 
-const redirectAfterLogin = createEffect(
+export const redirectAfterLogin = createEffect(
     (
         actions$ = inject(Actions),
         router = inject(Router)
@@ -76,8 +76,7 @@ const redirectAfterLogin = createEffect(
     }, { dispatch: false, functional: true }
 )
 
-
-const redirectToHomePage = createEffect(
+export const redirectToHomePage = createEffect(
     (
         actions$ = inject(Actions),
         router = inject(Router)
