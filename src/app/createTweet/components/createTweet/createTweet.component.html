@@ -1,0 +1,6 @@
+<form [formGroup]="tweetData" (ngSubmit)="onSubmit()">
+    <h2>Tweet Data</h2>
+    <input formControlName="content" type="text" placeholder="content">
+    <input formControlName="image" type="file">
+    <button type="submit">Submit</button>
+</form>
