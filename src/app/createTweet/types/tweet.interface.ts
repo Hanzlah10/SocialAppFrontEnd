@@ -1,4 +1,7 @@
-export interface tweet {
+export interface TweetInterface {
     content: string,
-    image: string
+    like: number | undefined | null,
+    hashtag: [],
+    comment: [],
+    id: string
 }

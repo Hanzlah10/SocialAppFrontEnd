@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { tweet } from '../../types/tweet.interface';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-tweet',
@@ -15,8 +14,15 @@ import { tweet } from '../../types/tweet.interface';
 })
 export class CreateTweetComponent {
 
+  constructor(private fb: FormBuilder) {
+
+  }
   // tweetData: tweet | undefined
-  tweetData: any
+  tweetData = this.fb.nonNullable.group({
+    content: ['', Validators.required],
+    image: ['']
+  })
+
   onSubmit() {
     console.log(this.tweetData)
   }
