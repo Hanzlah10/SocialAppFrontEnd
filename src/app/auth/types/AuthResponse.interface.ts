@@ -6,6 +6,8 @@ export interface AuthResponseInterface {
     data: currentUserInterface,
     error: []
 }
+
+
 // export interface AuthLoginResponseInterface {
 //     statusCode: number,
 //     message: string,
